@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap training</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;900&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <h1>
+        Auto-Growing <code>&lt;textarea></code>
+    </h1>
+
+    <form action="#0">
+        <label for="text">Text: </label>
+        <div class="grow-wrap">
+            <textarea name="text" id="text" onInput='this.parentNode.dataset.replicateValue = this.value'>
+
+            </textarea>
+        </div>
+    </form>
+    <script>
+        function hello(){
+            console.log('Hello',this);
+        }
+        hello();
+
+        const person = {
+            name: 'Vlad',
+            age: 25,
+            sayHello: hello,
+            sayHelloWindow: hello.bind(document),
+            logInfo: function(job, phone){
+                console.group(`${this.name} info:`);
+                console.log(`Name is ${this.name}`);
+                console.log(`Age is ${this.age}`);
+                console.log(`Job is ${job}`);
+                console.log(`Phone is ${phone}`);
+                alert('i');
+                console.groupEnd();
+            },
+        }
+
+        const lena = {
+            name: 'Elena',
+            age: 23,
+        }
+        //person.logInfo.bind(lena, 'Mirror', '+7977')();   bind не вызывает функцию, а возвращает новую и поэтому ее нужно вызвать.
+        //person.logInfo.call(lena, 'Caller', '+7977'); call сразу вызывает функцию
+        //person.logInfo.apply(lena, ['visage']); всегда две переменные. Вторая - массив.
+        const array = [1, 2, 3, 4, 5];
+        
+        function mult(arr, n){
+            return arr.map(function(i){
+                return i * n;
+            })
+        };
+
+        Array.prototype.multiply = function(n){
+            return this.map(function(i){return i * n});
+        };
+
+        const person1 = new Object({
+            name: 'Maxim',
+            age: 25,
+            greet: function(){
+                console.log('Greet!!!');
+            }
+        });
+
+        Object.prototype.sayHello = function(){console.log('Hello')};
+
+        let mira = Object.create(person1);
+        
+        mira.name = 'mira';
+
+        let str = new String('I am string');
+        //this === window true
+    </script>
+    
+</body>
+</html>
